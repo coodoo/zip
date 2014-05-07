@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"></html>
+<![endif]-->
+<!--[if IE 7]>
+<html lang="en" class="no-js lt-ie9 lt-ie8"></html>
+<![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="no-js lt-ie9"></html>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Backbone.js Testing</title>
+    <meta name="description" content="Apps, suites, and examples for Backbone.js Testing.">
+    <meta name="keywords" content="backbone.js testing, backbone.js, backbone, javascript, underscore.js, jquery, mocha, chai, sinon, sinon.js, testing, unit test, spies, mocks, stubs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-jasny/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" href="doc/site.css">
+  </head>
+  <body>
+    <div id="page" class="bg container"><a href="https://github.com/ryan-roemer/backbone-testing" style="position: absolute; top: 0; right: 0; border: 0;" class="hidden-xs"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" class="banner"></a>
+      <header id="hero" class="jumbotron backing-img"></header>
+      <div class="container">
+        <div class="nav-wrapper">
+          <nav id="nav" role="navigation" class="navmenu navmenu-inverse navmenu-default navmenu-fixed-left offcanvas"><a id="home" href="#" class="navmenu-brand">Home</a>
+            <ul id="nav-sections" class="nav navmenu-nav"></ul>
+          </nav>
+          <div class="navbar navbar-default navbar-fixed-top">
+            <button id="nav-collapse" type="button" data-toggle="offcanvas" data-target="#nav" data-canvas="body" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          </div>
+        </div><h1>Backbone.js Testing</h1>
+
+<p>Apps, suites, and examples for Backbone.js test development.</p>
+
+<h2>Introduction</h2>
+
+<p>This site provides materials and resources for developing and testing
+<a href="https://github.com/documentcloud/backbone">Backbone.js</a> web applications. All of the application and test
+examples for the book <strong><a href="http://www.packtpub.com/backbonejs-testing/book">Backbone.js Testing</a></strong> can be found here,
+grouped by chapter.
+We also provide a reference Backbone.js application -
+<strong><a href="./notes/app/index.html">Notes</a></strong> - for creating and viewing notes, which we use
+throughout the examples in the book.</p>
+
+<p>The core set of Backbone.js application technologies we cover includes:</p>
+
+<ul><li><strong><a href="http://jquery.com/">jQuery</a></strong></li><li><strong><a href="http://underscorejs.org/">Underscore.js</a></strong></li><li><strong><a href="http://backbonejs.org/">Backbone.js</a></strong></li></ul>
+
+<p>We write a test infrastructure built on the following (fantastic) test
+libraries.</p>
+
+<ul><li><strong><a href="http://visionmedia.github.com/mocha/">Mocha</a></strong></li><li><strong><a href="http://chaijs.com/">Chai</a></strong></li><li><strong><a href="http://sinonjs.org/">Sinon.JS</a></strong></li></ul>
+
+<p>The source code for everything is available from the project&#39;s
+<a href="https://github.com/ryan-roemer/backbone-testing/">GitHub repository</a>. If you find any errors or issues in content or
+code, please file a <a href="https://github.com/ryan-roemer/backbone-testing/issues">bug report</a> and we&#39;ll fix things up in short
+order. For those interested in extending our testing examples or helping
+out, please see our <a href="#development">contribution and development guide</a>.</p>
+
+<h2>Book</h2>
+
+<p><strong><a href="http://www.packtpub.com/backbonejs-testing/book">Backbone.js Testing</a></strong> by <a href="http://loose-bits.com/about.html">Ryan Roemer</a> walks through the
+fundamentals of test-driven development for Backbone.js applications. All of
+the code samples are directly used in the book - it is essentially your
+narrative guide to this repository.</p>
+
+<p><a href="http://www.packtpub.com/backbonejs-testing/book"><img alt="Book Cover" title="Book Cover" src="./doc/img/book/book-cover.jpg"/></a></p>
+
+<p>A short description of the book from the <a href="http://www.packtpub.com/">Packt Publishing</a>
+<a href="http://www.packtpub.com/backbonejs-testing/book">website</a>:</p>
+
+<blockquote><p>Frontend web applications are soaring in popularity and the
+Backbone.js library is leading this charge with a modular,
+lightweight approach for organizing JavaScript web applications. At
+the same time, testing client-side JavaScript and Backbone.js
+programs remains a difficult and tedious undertaking.</p><p>Backbone.js Testing brings sensible practices and current techniques
+to the challenges of Backbone.js test development. The book
+introduces fundamental testing concepts, comprehensive test
+infrastructure design, and practical exercises to easily and
+systematically test modern JavaScript web applications.</p><p>The book progresses from Mocha test suites and Chai assertions to
+advanced test mocks and stubs with Sinon.JS. The requisite libraries
+and utilities are introduced with in-depth examples and best
+practices for integration with your applications. The book guides
+you through the test planning and implementation processes for your
+application models, views, routers, and other Backbone.js
+components.</p><p>Backbone.js Testing gives you the tools, examples, and assistance to
+test your Backbone.js web applications thoroughly, quickly, and with
+confidence.</p></blockquote>
+
+<h2>Compatibility</h2>
+
+<p>The application and test samples should work for the following browser /
+version combinations:</p>
+
+<ul><li>Chrome: 7+</li><li>Safari: 5+</li><li>Firefox: 4+</li><li>Internet Explorer: 9+</li></ul>
+
+<p>See the Chai <a href="http://chaijs.com/guide/installation/">installation notes</a> for
+more compatibility information. <em>Note</em> that the Chai <code>should</code> object
+prototype extension is not compatible with IE 9 and lower.</p>
+
+<h2>Notes App</h2>
+
+<p><strong><a href="./notes/app/index.html">Notes</a></strong> is a simple personal note manager, written in
+Backbone.js. We provide two versions - a &quot;quick and easy&quot; <code>localStorage</code> based
+application that works in your browser with no additional setup, and a
+&quot;classic&quot; application with a full REST backend.</p>
+
+<h3>The Tour</h3>
+
+<p>The Notes application home page lists existing notes (by creation date), and
+provides a form field to create a new note with a title. A filter field is
+available in the menu bar to limit the list of displayed notes by title.</p>
+
+<p><img alt="Notes List" title="Notes List" src="./doc/img/notes/notes-list.png"/></p>
+
+<p>Clicking on the edit icon brings us to the single note view, with a simple
+form editor for the title and text body fields of the note. The body of a
+note is written using <a href="http://daringfireball.net/projects/markdown/">Markdown</a> formatting.</p>
+
+<p><img alt="Edit Note" title="Edit Note" src="./doc/img/notes/note-edit.png"/></p>
+
+<p>Clicking on the view menu tab switches us to the viewing pane, which renders
+the note&#39;s Markdown and produces our displayed note.</p>
+
+<p><img alt="View Note" title="View Note" src="./doc/img/notes/note-view.png"/></p>
+
+<p>The Notes application is written using <a href="https://github.com/twitter/bootstrap">Bootstrap</a>&#39;s responsive
+libraries and should render fine on mobile devices, tablets, and pretty much
+anything else.</p>
+
+<h3>LocalStorage App</h3>
+
+<p>The directory &quot;<code>notes/app</code>&quot; contains the standalone application, which uses
+HTML5 <a href="https://developer.mozilla.org/en-US/docs/DOM/Storage#localStorage">localStorage</a> as a backing store. Some useful links to get you
+started:</p>
+
+<ul><li><strong><a href="./notes/app/index.html">App demo</a></strong>: Online demo for you to try out. Because the app
+saves to local storage, your notes will be preserved across browser sessions
+(for the same browser).</li><li><strong><a href="./notes/test/test.html">Test Suite</a></strong>: The full Mocha / Chai / Sinon.JS test suite run
+in a single driver page.</li><li><strong><a href="./notes/test/coverage.html">Code Coverage</a></strong>: Runs the above test suite with full
+browser-side code coverage thanks to the awesome
+<a href="http://blanketjs.org">Blanket.js</a> coverage library.</li></ul>
+
+<h3>Server-Backed App</h3>
+
+<p>An alternative version of the application uses
+<a href="http://www.mongodb.org/">MongoDB</a> instead of <code>localStorage</code> for notes data and
+can be found in the &quot;<code>notes-rest</code>&quot; directory. The application is
+served via a <a href="http://nodejs.org/">Node.js</a>/<a href="http://expressjs.com/">Express</a>
+application located in &quot;<a href="./notes-rest/server.js">notes-rest/server.js</a>&quot;.</p>
+
+<p>Although we don&#39;t provide an online demo application, the full application
+<strong><a href="./notes-rest/test/test.html">test suite</a></strong> is available online using Sinon.JS
+<a href="http://sinonjs.org/docs/#server">fake servers</a> to fake out the requirement
+of having a real backend MongoDB server for the <code>App.Collections.Notes</code>
+tests. The test suite is nearly identical to the localStorage application tests
+for all of the other tests.</p>
+
+<p>The server requires <a href="http://nodejs.org/download/">Node.js</a> and
+<a href="http://docs.mongodb.org/manual/installation/">MongoDB</a> installations.
+Once you have these installed, you can change into the root of this repository
+and install all of the project libraries:</p>
+
+<pre><code>$ npm install</code></pre>
+
+<p>To run the sample server application, you will need two terminal windows.
+In the first window, start up MongoDB:</p>
+
+<pre><code>$ npm run-script mongo-start</code></pre>
+
+<p>In the second window, start up the Express server:</p>
+
+<pre><code>$ npm start</code></pre>
+
+<p>And from there you can navigate a browser to:</p>
+
+<ul><li><a href="http://127.0.0.1:4321/app/">http://127.0.0.1:4321/app/</a>:
+Use the MongoDB-backed application.</li><li><a href="http://127.0.0.1:4321/test/test.html">http://127.0.0.1:4321/test/test.html</a>:
+Run the tests from the live server.</li></ul>
+
+<p>Note that you can control several application options by setting
+console environment variables:</p>
+
+<ul><li><code>MONGO_ADDR</code>: MongoDB host address (default <code>127.0.0.1</code>).</li><li><code>MONGO_PORT</code>: MongoDB port (default <code>27027</code>).</li><li><code>ADDR</code>: Express server host address (default <code>127.0.0.1</code>).</li><li><code>PORT</code>: Express server port (default <code>4321</code>).</li></ul>
+
+<p>For example:</p>
+
+<pre><code>$ export PORT=4323; npm start</code></pre>
+
+<p>runs the server on port 4323 instead of 4321 (the default).</p>
+
+<h2>Chapter Examples</h2>
+
+<p>The examples for each chapter are provided in the &quot;chapters&quot; directory,
+separated by number. We also provide a driver page for (nearly) all of
+<a href="./chapters/test.html">the non-application tests</a>.</p>
+
+<h3>Chapter 1: Setting up a Test Infrastructure</h3>
+
+<ul><li><p><strong><a href="./chapters/01/test/test.html">Trying out the test libraries</a></strong>: Some
+first basic unit tests using Mocha, Chai, and SinonJS.</p><ul><li><p><a href="./chapters/01/test/js/spec/hello.spec.js">hello.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/01/test/test-failure.html">Test Failures</a></strong>:
+Different types of test failures.</p><ul><li><p><a href="./chapters/01/test/js/spec/failure.spec.js">failure.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/01/test/test-timing.html">Test Timing</a></strong>:
+Tests that take different times, which Mocha annotates for &quot;medium&quot;
+and &quot;slow&quot; tests. Also has one test timeout failure.</p><ul><li><a href="./chapters/01/test/js/spec/timing.spec.js">timing.spec.js</a></li></ul></li></ul>
+
+<h3>Chapter 2: Creating a Backbone.js Application Test Plan</h3>
+
+<ul><li><strong><a href="./chapters/02/test/test.html">Tests</a></strong>:
+Initial simple tests for a Backbone.js application.<ul><li><a href="./chapters/02/test/js/spec/namespace.spec.js">namespace.spec.js</a>:
+Verifies <a href="./notes/app/js/app/namespace.js">namespace</a>
+objects are correctly setup.</li><li><a href="./chapters/02/test/js/spec/models/note.spec.js">models/note.spec.js</a>:
+Tests the application model
+<a href="./notes/app/js/app/models/note.js"><code>App.Models.Note</code></a>.</li></ul></li></ul>
+
+<h3>Chapter 3: Test Assertions, Specs, and Suites</h3>
+
+<ul><li><p><strong><a href="./chapters/03/test/test-bdd.html">BDD Interface</a></strong>: Tests using
+<a href="http://visionmedia.github.com/mocha/#bdd-interface">Mocha</a>
+and <a href="http://chaijs.com/api/bdd/">Chai</a> <strong>BDD</strong> styles.</p><ul><li><p><a href="./chapters/03/test/js/spec/bdd.spec.js">bdd.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/03/test/test-tdd.html">TDD Interface</a></strong>: Tests using Mocha
+<strong><a href="http://visionmedia.github.com/mocha/#tdd-interface">TDD</a></strong> and
+Chai <a href="http://chaijs.com/api/assert/"><code>assert</code></a> styles.</p><ul><li><p><a href="./chapters/03/test/js/test/tdd.js">tdd.js</a></p></li></ul></li><li><p><strong><a href="./chapters/03/test/test-chai.html">Chai Assertions</a></strong>: Tests using
+a variety of <a href="http://chaijs.com/api/bdd/">Chai BDD</a> assertions.</p><ul><li><a href="./chapters/03/test/js/spec/chai-chains.spec.js">chai-chains.spec.js</a>:
+Language chains.</li><li><a href="./chapters/03/test/js/spec/chai-values.spec.js">chai-values.spec.js</a>:
+Value properties.</li><li><a href="./chapters/03/test/js/spec/chai-comparisons.spec.js">chai-comparisons.spec.js</a>:
+Comparison functions.</li><li><a href="./chapters/03/test/js/spec/chai-objects.spec.js">chai-objects.spec.js</a>:
+Object and array assertions.</li><li><p><a href="./chapters/03/test/js/spec/chai-errors.spec.js">chai-errors.spec.js</a>:
+Exception handling.</p></li></ul></li><li><p><strong><a href="./chapters/03/test/test-only.html">Mocha <code>only</code></a></strong>: Tests using the Mocha
+<code>only</code> test modifier to run a single spec.</p><ul><li><p><a href="./chapters/03/test/js/spec/mocha-only.spec.js">mocha-only.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/03/test/test-skip.html">Mocha <code>skip</code></a></strong>: Tests using the Mocha
+<code>skip</code> test modifier to skip one or more specs.</p><ul><li><p><a href="./chapters/03/test/js/spec/mocha-skip.spec.js">mocha-skip.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/03/test/test-pending.html">Mocha Pending Tests</a></strong>: A basic
+skeleton suite with empty specs (e.g., no test callback), which are all in
+&quot;pending&quot; state during a test run. A great test development practice is to
+declare specs describing behavior without functions during the initial
+design phanse. The specs can later be implemented in parallel with the
+underlying application components, ensuring that the desired behavior is
+correctly implemented.</p><ul><li><p><a href="./chapters/03/test/js/spec/collections/notes-pending.spec.js">notes-pending.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/03/test/test.html">Tests</a></strong>:
+Continue tests for the <strong><a href="./notes/app/index.html">Notes</a></strong> Backbone.js application.</p><ul><li><a href="./chapters/03/test/js/spec/collections/notes.spec.js">collections/notes.spec.js</a>:
+Tests the collection <a href="./notes/app/js/app/collections/notes.js"><code>App.Collections.Notes</code></a>.</li><li><a href="./chapters/03/test/js/spec/views/note-view.spec.js">views/note-view.spec.js</a>:
+Tests the view <a href="./notes/app/js/app/views/note-view.js"><code>App.Views.NoteView</code></a>,
+which renders model <a href="http://daringfireball.net/projects/markdown/">Markdown</a>
+data into HTML.</li></ul></li></ul>
+
+<h3>Chapter 4: Test Spies</h3>
+
+<ul><li><p><strong><a href="./chapters/04/test/test-sinon.html">Sinon.JS Spies</a></strong>: Various test uses
+for Sinon.JS <a href="http://sinonjs.org/docs/#spies">spies</a>.</p><ul><li><p><a href="./chapters/04/test/js/spec/sinon.spec.js">sinon.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/04/test/test.html">Tests</a></strong>:
+Tests for the <strong><a href="./notes/app/index.html">Notes</a></strong> Backbone.js application that use
+Sinon.JS spies.</p><ul><li><a href="./chapters/04/test/js/spec/views/note-nav.spec.js">views/note-nav.spec.js</a>:
+Tests the <a href="./notes/app/js/app/views/note-nav.js"><code>App.Views.NoteNav</code></a>
+view, which mediates events for the single page navigation menu bar.</li><li><a href="./chapters/04/test/js/spec/views/note.spec.js">views/note.spec.js</a>:
+Tests the <a href="./notes/app/js/app/views/note.js"><code>App.Views.Note</code></a>
+view, which wraps all of the other single note views and model.</li></ul></li></ul>
+
+<h3>Chapter 5: Test Stubs and Mocks</h3>
+
+<ul><li><p><strong><a href="./chapters/05/test/test-stubs.html">Sinon.JS Stubs</a></strong>: Tests using
+Sinon.JS <a href="http://sinonjs.org/docs/#stubs">stubs</a>.</p><ul><li><p><a href="./chapters/05/test/js/spec/stubs.spec.js">stubs.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/05/test/test-mocks.html">Sinon.JS Mocks</a></strong>: Tests using
+Sinon.JS <a href="http://sinonjs.org/docs/#mocks">mocks</a>.</p><ul><li><p><a href="./chapters/05/test/js/spec/mocks.spec.js">mocks.spec.js</a></p></li></ul></li><li><p><strong><a href="./chapters/05/test/test.html">Tests</a></strong>:
+Tests for the <strong><a href="./notes/app/index.html">Notes</a></strong> Backbone.js application with Sinon.JS
+stubs and mocks.</p><ul><li><a href="./chapters/05/test/js/spec/views/notes-item.spec.js">views/notes-item.spec.js</a>:
+Tests the <a href="./notes/app/js/app/views/notes-item.js"><code>App.Views.NotesItem</code></a>
+view, which displays a table row for a single note in the &quot;all notes&quot;
+list.</li><li><a href="./chapters/05/test/js/spec/routers/router.spec.js">routers/router.spec.js</a>:
+Tests an <strong>abbreviated</strong> version of the
+<a href="./chapters/05/test/js/spec/routers/router.js"><code>App.Routers.Router</code></a>
+router, implementing the route matching logic, but omitting the actual
+view creation and display. The tests that we create a good starting point
+for testing routers, but please see the Notes application source
+for the
+<a href="./notes/app/js/app/routers/router.js">real <code>App.Routers.Router</code> source</a>
+and <a href="./notes/test/js/spec/routers/router.spec.js">full &quot;routers/router.spec.js&quot;</a>
+file.</li></ul></li></ul>
+
+<h3>Chapter 6: Automated Web Testing</h3>
+
+<p>We don&#39;t introduce any new tests in Chapter 6, instead focusing on automating
+all of the application and chapter tests we have provided in this respository.
+See the next section for a discussion of test automation with
+<a href="http://phantomjs.org/">PhantomJS</a>.</p>
+
+<h2>Automated Tests</h2>
+
+<p>All of the tests for the Notes application and the chapter
+samples can be run in the <a href="http://phantomjs.org/">PhantomJS</a> headless WebKit
+engine and/or any local browsers.</p>
+
+<p>Simply install the Node.js dependencies:</p>
+
+<pre><code>$ npm install</code></pre>
+
+<p>which will place an internal PhantomJS binary in
+&quot;./node_modules/.bin/phantomjs&quot; as well as all other necessary libraries.</p>
+
+<h3>Mocha-PhantomJS</h3>
+
+<p>From there, you can use the <code>mocha-phantomjs</code> binary to run any HTML test
+driver page from the command line, e.g.:</p>
+
+<pre><code>$ ./node_modules/.bin/mocha-phantomjs notes/test/test.html</code></pre>
+
+<p>As a helper, the following script command will run nearly all of the
+Notes application and chapter unit tests:</p>
+
+<pre><code>$ npm test</code></pre>
+
+<h3>Karma</h3>
+
+<p><a href="http://karma-runner.github.io/">Karma</a> is a multi-browser command-line test runner. It can run tests
+from any combination of PhantomJS and any locally installed browsers (that
+have a Karma test runner implemented) -- like Chrome and Firefox.</p>
+
+<h4>Single Invocation</h4>
+
+<p>We use a Grunt plugin <code>grunt-karma</code> to help configure Karma for the tests in
+this project. You can run all of the tests using PhantomJS alone in Karma
+with the following command:</p>
+
+<pre><code>$ ./node_modules/.bin/grunt karma:fast</code></pre>
+
+<h4>Development Mode</h4>
+
+<p>Alternately, you can switch to &quot;development mode&quot; which keeps the Karma test
+engine running (which we&#39;ve configured to use PhantomJS, Chrome and Firefox)
+with:</p>
+
+<pre><code>$ ./node_modules/.bin/grunt karma:dev</code></pre>
+
+<p>This process then waits for test invocations, which you can do by opening a
+<em>second terminal</em> in the same directory and typing:</p>
+
+<pre><code>$ ./node_modules/.bin/karma run</code></pre>
+
+<p>This two-terminal approach saves you the overhead of firing up all of the
+browser environments in which to run the test suites.</p>
+
+<h3>Travis Continuous Integration</h3>
+
+<p>We run all of these tests automatically using (the awesome) <a href="https://travis-ci.org/">Travis CI</a>
+continuous integration service. Travis watches the GitHub repository containing
+this project and when it detects the code has changed, launches new builds
+and invokes the PhantomJS tests above.</p>
+
+<p>Travis even provides a convenient image status indicator, that we display
+below, so that we can display the <em>always current</em> build status of our code:</p>
+
+<p><a href="https://travis-ci.org/ryan-roemer/backbone-testing"><img alt="Build Status" src="https://travis-ci.org/ryan-roemer/backbone-testing.png"/></a></p>
+
+<p>Setting all of this up is as simple as adding a Travis configuration file
+&quot;.travis.yml&quot; as follows:</p>
+
+<pre><code>language: node_js
+node_js:
+  - 0.8
+  - 0.10</code></pre>
+
+<p>This instructs Travis to test out the latest Node.js versions for v0.8 and
+v0.10. By default, Travis already has PhantomJS installed and will run
+<code>npm install</code> and <code>npm test</code> on any Node.js project, which conveniently
+sets up and invokes all of our PhantomJS tests.</p>
+
+<p>Our actual &quot;<a href="./.travis.yml">.travis.yml</a>&quot; file runs different commands than
+the default <code>npm test</code> to add things like style checking. But, the overall
+Travis configuration is essentially the same.</p>
+
+<h2>Additional Tools</h2>
+
+<p>There are many additional testing libraries and plugins specifically suited
+to testing Backbone.js applications beyond the core test stack we use in the
+application and chapter examples above.</p>
+
+<h3>Chai</h3>
+
+<p>Chai has a rich <a href="http://chaijs.com/plugins">plugin</a> ecosystem, with libraries
+that enhance the core Chai assertion statement library, provide more specific
+failure messages, and make application behavior easier to express.</p>
+
+<p>Plugins that are used in some examples:</p>
+
+<ul><li><strong><a href="http://chaijs.com/plugins/sinon-chai">sinon-chai</a></strong>: Allows Chai to make
+Sinon.JS assertions like <code>expect(spy).to.have.been.calledWith(42)</code> instead
+of the Sinon.JS native <code>sinon.assert.calledWith(spy, 42)</code>.</li></ul>
+
+<p>Additional plugins not used in the examples:</p>
+
+<ul><li><strong><a href="http://formidablelabs.github.io/chai-jq/">chai-jq</a></strong>: Adds
+assertions for jQuery functions and properties like <code>$class()</code>,
+<code>$attr()</code>, and <code>$hidden</code>.</li><li><strong><a href="http://chaijs.com/plugins/chai-jquery">chai-jquery</a></strong>: An alternate
+jQuery assertion library with methods including <code>data()</code>, <code>class()</code>,
+<code>id()</code>, and <code>hidden()</code>.</li><li><strong><a href="http://chaijs.com/plugins/chai-backbone">chai-backbone</a></strong>: Adds
+Backbone.js specific assertions such as <code>expect(model).to.trigger()</code> and
+<code>expect(&quot;hash/fragment&quot;).to.route.to()</code>.</li></ul>
+
+<h2>Libraries &amp; Versions</h2>
+
+<p>All frontend libraries used in this repository for the sample apps and chapter
+examples are provided in the &quot;vendor&quot; directory.</p>
+
+<p>Note that this repository has been updated since the publication of
+<strong><a href="http://www.packtpub.com/backbonejs-testing/book">Backbone.js Testing</a></strong> on July 12, 2013. The enumerated versions of
+all third party libraries are indicated by the most current version in the
+repository with the published version noted in parenthesis when different.</p>
+
+<p>The core Backbone.js components used are:</p>
+
+<ul><li><strong><a href="https://github.com/jquery/jquery">jQuery</a></strong>: <code>2.1.0</code> (<em>2.0.2</em>)</li><li><strong><a href="https://github.com/documentcloud/underscore">Underscore.js</a></strong>: <code>1.6.0</code> (<em>1.4.4</em>)</li><li><strong><a href="https://github.com/documentcloud/backbone">Backbone.js</a></strong>: <code>1.1.2</code> (<em>1.0.0</em>)</li><li><strong><a href="https://github.com/jeromegn/backbone.localStorage">Backbone.localStorage</a></strong>: <code>1.1.7</code> (<em>1.1.5</em>)</li><li><strong><a href="https://github.com/douglascrockford/JSON-js">JSON</a></strong>: <em>For older browsers</em></li></ul>
+
+<p>The sample Notes application also uses:</p>
+
+<ul><li><strong><a href="https://github.com/twitter/bootstrap">Twitter Bootstrap</a></strong>: <code>3.1.1</code> (<em>2.3.2</em>)</li><li><strong><a href="https://github.com/coreyti/showdown">Showdown</a></strong>: <code>0.3.1</code></li></ul>
+
+<p>The frontend test libraries we use are:</p>
+
+<ul><li><strong><a href="https://github.com/visionmedia/mocha">Mocha</a></strong>: <code>1.18.2</code> (<em>1.9.0</em>)</li><li><strong><a href="https://github.com/chaijs/chai">Chai</a></strong>: <code>1.9.1</code> (<em>1.7.1</em>)</li><li><strong><a href="https://github.com/cjohansen/Sinon.JS">Sinon.JS</a></strong>: <code>1.9.0</code> (<em>1.7.3</em>)</li></ul>
+
+<p>The test plugins include:</p>
+
+<ul><li><strong><a href="https://github.com/domenic/sinon-chai">Sinon-Chai</a></strong>: <code>2.4.0</code></li><li><strong><a href="https://github.com/metaskills/mocha-phantomjs">Mocha-PhantomJS</a></strong>: <code>3.2.0</code> (<em>2.0.3</em>)</li></ul>
+
+<h3>Notes</h3>
+
+<h4>Published Versions and Code</h4>
+
+<p>The repository was tagged with git as <code>published-1.0</code> for the code samples
+that are shipped with the book as it went to press. To check out the published
+version in this repository, type:</p>
+
+<pre><code>$ git checkout tags/published-1.0</code></pre>
+
+<p>This will switch all libraries, application code, and tests to the version that
+directly matches the book.</p>
+
+<h4>Mocha-PhantomJS and PhantomJS</h4>
+
+<p>As of v3.x.x and higher, Mocha-PhantomJS requires PhantomJS v1.9.1 or higher.</p>
+
+<h4>Mocha-PhantomJS and Mocha Compatibility</h4>
+
+<p>Mocha version 1.10.0 and 1.11.0 introduced incompatibilities with
+Mocha-PhantomJS. Modern versions of both libraries are now compatible, e.g.,
+Mocha v1.12.0+ and Mocha-PhantomJS v3.1.0+.</p>
+
+<p>For this historically minded, the evolution of this issue is documented in the
+following tickets:</p>
+
+<ul><li><a href="https://github.com/visionmedia/mocha/issues/770">Mocha #770</a></li><li><a href="https://github.com/metaskills/mocha-phantomjs/issues/58">Mocha-PhantomJS #58</a></li></ul>
+
+<p><strong><a href="http://www.packtpub.com/backbonejs-testing/book">Backbone.js Testing</a></strong> shipped with Mocha v1.9.0 and Mocha-PhantomJS
+v2.0.3 to avoid the issue.</p>
+
+<h2>Licenses</h2>
+
+<p>All code not otherwise specified is Copyright 2013 Ryan Roemer.
+Released under the <a href="./LICENSE.txt">MIT</a> License.</p>
+
+<p>This repository contains various libraries from other folks, and are licensed
+as follows:</p>
+
+<ul><li><p><a href="https://github.com/documentcloud/backbone">Backbone.js</a> is Copyright Jeremy Ashkenas and licensed under the
+<a href="https://github.com/documentcloud/backbone/blob/master/LICENSE">MIT</a> license.</p></li><li><p><a href="https://github.com/documentcloud/underscore">Underscore.js</a> is Copyright Jeremy Ashkenas and licensed under
+the <a href="https://github.com/documentcloud/underscore/blob/master/LICENSE">MIT</a>
+license.</p></li><li><p><a href="https://github.com/jquery/jquery">jQuery</a> is Copyright jQuery Foundation and licensed under the
+<a href="https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt">MIT</a> license.</p></li><li><p><a href="https://github.com/jeromegn/backbone.localStorage">Backbone.localStorage</a> is Copyright Jerome Gravel-Niquet and
+licensed under the MIT license.</p></li><li><p><a href="https://github.com/douglascrockford/JSON-js">JSON</a> is Public Domain software created by Douglas Crockford.</p></li><li><p><a href="https://github.com/visionmedia/mocha">Mocha</a> is Copyright TJ Holowaychuk and licensed under the
+<a href="https://github.com/visionmedia/mocha/blob/master/LICENSE">MIT</a> license.</p></li><li><p><a href="https://github.com/chaijs/chai">Chai</a> is Copyright Jake Luer and licensed under the
+<a href="https://github.com/cjohansen/Sinon.JS/blob/master/LICENSE">BSD</a> license.</p></li><li><p><a href="https://github.com/domenic/sinon-chai">Sinon-Chai</a> is Copyright Domenic Denicola and licensed under
+what we will politely approximate to a
+&quot;<a href="https://github.com/domenic/sinon-chai/blob/master/LICENSE.txt">public domain</a>&quot;
+license.</p></li><li><p><a href="https://github.com/cjohansen/Sinon.JS">Sinon.JS</a> is Copyright Christian Johansen and licensed under the
+<a href="https://github.com/cjohansen/Sinon.JS/blob/master/LICENSE">BSD</a> license.</p></li><li><p><a href="https://github.com/twitter/bootstrap">Twitter Bootstrap</a> is Copyright Twitter, Inc. and licensed under
+the <a href="https://github.com/twitter/bootstrap/blob/master/LICENSE">Apache v2.0</a>
+license.</p></li><li><p><a href="https://github.com/jasny/bootstrap/">Jasny Bootstrap</a> is Copyright Twitter, Inc. and Jasny BV
+and licensed under the
+<a href="https://github.com/jasny/bootstrap/blob/master/LICENSE">Apache v2.0</a>
+license.</p></li><li><p><a href="https://github.com/coreyti/showdown">Showdown</a> is Copyright Corey Innis and licensed under the
+<a href="https://github.com/coreyti/showdown/blob/master/license.txt">BSD</a> license.</p></li><li><p><a href="https://github.com/metaskills/mocha-phantomjs">Mocha-PhantomJS</a> is Copyright Ken Collins and licensed under the
+<a href="https://github.com/metaskills/mocha-phantomjs/blob/master/MIT-LICENSE">MIT</a>
+license.</p></li><li><p><a href="https://github.com/alex-seville/blanket">Blanket.js</a> is Copyright Alex Seville and licensed under the
+<a href="https://github.com/alex-seville/blanket/blob/master/LICENSE-MIT">MIT</a>
+license.</p></li></ul>
+
+<h2>Development</h2>
+
+<p>For those who would like to get under the hood, or help out with the
+application or test examples.</p>
+
+<h3>Scripts, Commands</h3>
+
+<p>For pretty much everything, you will need to install a Node.js environment, and
+the development NPM dependencies:</p>
+
+<pre><code>$ npm install</code></pre>
+
+<p>From there, there are various <a href="http://gruntjs.com/">Grunt</a> script helpers for style checking
+and tests:</p>
+
+<pre><code># Run style checks for server, client, and both.
+$ ./node_modules/.bin/grunt jshint:server
+$ ./node_modules/.bin/grunt jshint:client
+$ ./node_modules/.bin/grunt jshint
+
+# Run headless tests for the application, individual chapters, all chapters
+# as one big test, and all of these together.
+$ ./node_modules/.bin/grunt test:app
+$ ./node_modules/.bin/grunt test:rest
+$ ./node_modules/.bin/grunt test:chaps
+$ ./node_modules/.bin/grunt test:chaps-all
+$ ./node_modules/.bin/grunt test
+
+# Run all style checks and headless tests.
+$ ./node_modules/.bin/grunt check</code></pre>
+
+<p>The file &quot;README.md&quot; is transformed from markdown into the HTML page
+&quot;index.html&quot;, and can be compiled once, or watched for changes with the
+following commands.</p>
+
+<pre><code>$ ./node_modules/.bin/grunt jade:docs
+$ ./node_modules/.bin/grunt watch:docs</code></pre>
+
+<h3>Contributions</h3>
+
+<p>Bugs, issues and fixes for any of the application or test code examples are
+most welcome. Please file a GitHub
+<a href="https://github.com/ryan-roemer/backbone-testing/issues">issue</a> or pull request
+for any changes. Pull requests should be able to pass</p>
+
+<pre><code>$ ./node_modules/.bin/grunt check</code></pre>
+
+<p>without any errors.</p><h2>History</h2>
+
+<h3>Current</h3>
+
+<ul><li><strong>Docs</strong>: Added Jasny Bootstrap for offcanvas menu.</li></ul>
+
+<h3>v0.0.7</h3>
+
+<ul><li><strong>Libraries</strong>: Remove Backstretch.</li><li>Clean up the bower library copy Grunt tasks and manually minify Underscore
+and Backbone now.</li></ul>
+
+<h3>v0.0.6</h3>
+
+<ul><li><strong>Karma</strong>: Add Safari test driver.</li><li><strong>Libraries</strong>: Upgrade to JSON2 3d7767b6b1f3da363c625ff54e63bbf20e9e83ac,
+Sinon.JS v1.9.0, Chai 1.9.1, Mocha v1.18.2.</li></ul>
+
+<h3>v0.0.5</h3>
+
+<ul><li><strong>Karma</strong>: Add Karma test driver support with Travis CI integration.</li><li><strong>Libraries</strong>: Upgrade to Backbone.js v1.1.2, jQuery v2.1.0,
+Sinon-Chai v2.5.0, Mocha v1.17.1, Underscore.js v1.6.0, Chai v1.9.0,
+Bootstrap v3.1.1.</li></ul>
+
+<h3>v0.0.4</h3>
+
+<ul><li><strong>Libraries</strong>: Upgrade to Bootstrap v3.0.3, Backbone v1.1.0,
+Backbone.localStorage v1.1.7, Blanket.js v1.1.5, Chai v1.8.1,
+Mocha 1.15.1, Underscore.js 1.5.2.</li><li><strong>Notes Rest</strong>: Add more permissive routing and better README.md notes.</li></ul>
+
+<h3>v0.0.3</h3>
+
+<ul><li><strong>Bower</strong>: Switch to Bower for all existing client-side libraries.</li></ul>
+
+<h3>v0.0.2</h3>
+
+<ul><li><em>BUG</em>: Fix <code>src</code> attribute link to TDD example test file. The Chapter 3 file
+&quot;tdd.spec.js&quot; in the samples should have been named &quot;tdd.js&quot;. The text of
+the book remains correct - only the code sample has been updated.
+(<a href="https://github.com/ASerputko">@aserputko</a>)</li></ul>
+
+<h3>v0.0.1</h3>
+
+<ul><li>Update all libraries to current as of 20130717.</li><li>Original code up to Book&#39;s publication (tagged with: <code>published-1.0</code>)</li></ul>
+      </div>
+      <div id="fixtures" style="display: none;" class="hidden">
+        <li class="nav-item"><a></a></li>
+      </div>
+    </div>
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/underscore.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap-jasny/js/jasny-bootstrap.min.js"></script>
+    <script src="doc/site.js"></script>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38176320-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      }());
+    </script>
+  </body>
+</html>
