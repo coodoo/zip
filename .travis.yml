@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - 0.8
-  - 0.10
+  - "0.8"
+  - "0.10"
 
 before_install:
   # http://blog.npmjs.org/post/78085451721/npms-self-signed-certificate-is-no-more
@@ -17,3 +17,4 @@ script:
   #- npm run-script check
   #- node_modules/.bin/mocha-phantomjs notes/test/test.html
   #- node_modules/.bin/grunt karma:ci
+  #
